@@ -1,0 +1,33 @@
+
+[description]
+info = "9 bus TEST"
+
+
+[ieeeData]
+file = "ieee9.xlsx"   # enthält MVAbase
+
+
+[unitData]
+file = "UnitData.yaml"
+
+
+[timeDomain]
+tStop =   1.0
+tInterval = 1.0e-3
+signals = [ ["unit2.Generator.tau", "unit3.Generator.tau"],
+            ["unit2.Generator.w", "unit3.Generator.w"],
+            ["unit2.phiDEG", "unit3.phiDEG"]
+        ]       # Vector{Vector{String}}:
+
+
+[eigenvalues]
+sigmaMinMax = [-5.0, 1.0]
+frequMinMax = [-0.2, 3]     # Vector{Float}
+
+
+[transferFunction]
+fStart = 0.01
+fStop = 100.0
+fPoints = 500
+INsignal = 3        # Int
+OUTsignals = [1,4]  # Vector{Int}

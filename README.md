@@ -6,7 +6,35 @@ workflow for Electrical Power System studies
 # Introduction
 
 
+# Workflow
+
+* read ECXEL file with BUS ans BRANCH information
+
+* convert XLSX to `ieee.txt` Format
+
+* Run loadflow with  `upwflow`
+
+* create all elements based on the information from BUS and BRANCH
+
+* set initial values for the elements based on the loadflow results
+
+* instantiate the full model
+
+* RUN transient simulation
+
+* OPTION: run Eigenvalue calculation
+
+* OPTION: run Transferfunctions  calculation
+
+
 ## Input
+
+e.g. BUS data for a 9-Bus System
+
+![EXCEL input](./assets/ieee9XLSX.png)
+
+converted XLSX as input for loadflow with `uwpflow`
+
 
 ```
  30/07/05 UW ARCHIVE           100.00 2005 S Anderson9BusTest Case
