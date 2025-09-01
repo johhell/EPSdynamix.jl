@@ -147,26 +147,16 @@ Iteration:  3  Maximum mismatch: 3.421e-07  Equation: 1  AC bus: 7
   7.117766 seconds (5.08 M allocations: 243.627 MiB, 0.68% gc time, 93.98% compilation time: 9% of which was recompilation)
 [+] simulation finished in 1.070168937 secs.
 ```
-
-
-### OPTION: run Eigenvalue calculation
-
-### OPTION: run Transfer function  calculation
-
-
-
-
-### Transient simulation in time domain
-
 ![Transient simulation](./assets/transient.png)
 
-### Eigenvalues
+
+### OPTION: RUN Eigenvalue calculation
 
 ![Eigenvalues](./assets/evals.png)
 
 
-### Transfer functions
 
+### OPTION: RUN Transfer function  calculation
 
 ![Transfer functions](./assets/transfer.png)
 
