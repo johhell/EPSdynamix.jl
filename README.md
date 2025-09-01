@@ -1,37 +1,26 @@
-# EPSdynamix.jl
+﻿# EPSdynamix.jl
 
 
 workflow for Electrical Power System studies
 
-# Introduction
+## Introduction
 
 
-# Workflow
-
-* read ECXEL file with BUS ans BRANCH information
-
-* convert XLSX to `ieee.txt` Format
-
-* Run loadflow with  `upwflow`
-
-* create all elements based on the information from BUS and BRANCH
-
-* set initial values for the elements based on the loadflow results
-
-* instantiate the full model
-
-* RUN transient simulation
-
-* OPTION: run Eigenvalue calculation
-
-* OPTION: run Transferfunctions  calculation
+## Installation
 
 
-## Input
+
+
+## Workflow
+
+### read ECXEL file with BUS ans BRANCH information
 
 e.g. BUS data for a 9-Bus System
 
 ![EXCEL input](./assets/ieee9XLSX.png)
+
+
+### Cconvert XLSX to `ieee.txt` Format
 
 converted XLSX as input for loadflow with `uwpflow`
 
@@ -65,16 +54,119 @@ END OF DATA
 ```
 
 
-## Transient simulation in time domain
+
+### Run loadflow with  `upwflow`
+
+```
+UW Continuation Power Flow (c)1992,1996,1999, 2006 C. Canizares, F. Alvarado and S. Zhang.
+Summary of input data for case:
+Anderson9BusTest Case
+
+            AC buses -> 9
+            PV buses -> 3
+            X buses  -> 0
+            Z buses  -> 0
+            AC elem. -> 9
+         V Reg. Trf. -> 0
+        PQ Reg. Trf. -> 0
+            DC buses -> 0
+            DC lines -> 0
+                SVCs -> 0
+               TCSCs -> 0
+            STATCOMs -> 0
+           No. Areas -> 0
+   Reference Bus(es) -> 1 Bus1  16.5kV (Angle=  0.00 deg.)
+*** The data has been read successfully ***
+
+Iteration:  1  Maximum mismatch:     1.63  Equation: 1  AC bus: 2
+Iteration:  1  Maximum mismatch:   0.1875  Equation: 2  AC bus: 7
+Iteration:  2  Maximum mismatch: 0.002147  Equation: 2  AC bus: 7
+Iteration:  3  Maximum mismatch: 3.421e-07  Equation: 1  AC bus: 7
+**** Base Case Solved ****
+```
+
+
+### Create all elements based on the information from BUS and BRANCH
+
+### Instantiate the full model
+
+### Set initial values for the elements based on the loadflow results
+
+
+```
+┌─unit2::Generating Unit──────────────────┐
+│ V0 = 1.025/9.28deg  P/Q = -1.630/-0.067 │
+└─────────────────────────────────────────┘
+
+    ┌─unit2.Generator::SM────────────────────────────────┐
+    │ V0 = 1.025/9.28deg  P/Q = -1.630/-0.067  MVA=250.0 │
+    │ ** tau = 0.653  uF = 1.268  phiKR = 0.564          │
+    └────────────────────────────────────────────────────┘
+
+    ┌─unit2.Governor::TConstant──┐
+    │ ** T0 = -0.653             │
+    └────────────────────────────┘
+
+    ┌─unit2.AVR::AVR2─────────────────┐
+    │ V0 = 1.025/9.28deg  uF0 = 1.268 │
+    │ ** vSet = 1.031                 │
+    └─────────────────────────────────┘
+
+┌─unit3::Generating Unit─────────────────┐
+│ V0 = 1.025/4.66deg  P/Q = -0.850/0.109 │
+└────────────────────────────────────────┘
+
+    ┌─unit3.Generator::SM───────────────────────────────┐
+    │ V0 = 1.025/4.66deg  P/Q = -0.850/0.109  MVA=150.0 │
+    │ ** tau = 0.567  uF = 1.118  phiKR = 0.458         │
+    └───────────────────────────────────────────────────┘
+
+    ┌─unit3.Governor::TConstant──┐
+    │ ** T0 = -0.567             │
+    └────────────────────────────┘
+
+    ┌─unit3.AVR::AVR2─────────────────┐
+    │ V0 = 1.025/4.66deg  uF0 = 1.118 │
+    │ ** vSet = 1.031                 │
+    └─────────────────────────────────┘
+
+┌─loadZ5::Zload──────────────────────────┐
+│ V0 = 0.996/-3.99deg  P/Q = 1.250/0.500 │
+│ ** r = 0.684  x = 0.273                │
+│ ** iRe = 1.218  iIm = -0.588           │
+└────────────────────────────────────────┘
+...
+...
+```
+
+
+### RUN transient simulation
+```
+[+] set initial values.
+[*] starting simulation.
+  7.117766 seconds (5.08 M allocations: 243.627 MiB, 0.68% gc time, 93.98% compilation time: 9% of which was recompilation)
+[+] simulation finished in 1.070168937 secs.
+```
+
+
+### OPTION: run Eigenvalue calculation
+
+### OPTION: run Transfer function  calculation
+
+
+
+
+### Transient simulation in time domain
 
 ![Transient simulation](./assets/transient.png)
 
-## Eigenvalues
+### Eigenvalues
 
 ![Eigenvalues](./assets/evals.png)
 
 
-## Transferfunctions
+### Transfer functions
 
 
-![Transferfunctions](./assets/transfer.png)
+![Transfer functions](./assets/transfer.png)
+
