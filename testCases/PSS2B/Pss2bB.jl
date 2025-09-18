@@ -92,7 +92,7 @@ end
 
 
 PSS2Btest = Model(
-    initFktL1 = IniFkt(fktcall=PSS2Binit),  # not used
+    initFktL1 = IniFkt(fktcall=PSS2Binit),
 
 
     Tw1 = 10.0, Tw2 = 10.0, Tw3 = 10.0,

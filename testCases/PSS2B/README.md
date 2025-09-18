@@ -152,6 +152,26 @@ The same approach as described above, with the following differences:
 * System is linear => simple initialization
 
 
+```
+PSS2Btest = Model(
+    initFktL1 = IniFkt(fktcall=PSS2Binit),
+    ## all the parameters
+    Tw1 = 10.0, Tw2 = 10.0, Tw3 = 10.0,  ...
+
+    out = output,
+    system = SS,
+    equations = :[
+        system.u = [w0, p0+0.01*time]
+        out = system.y[1,1]     ]
+)
+
+
+instModel = @instantiateModel(PSS2Btest,  ...
+PSS2Btest[:initFktL1][:fktcall](instModel.parameters)
+```
+
+
+
 ### Results
 
 * `Pss2bA.jl` and `Pss2bB.jl` show the same results.
