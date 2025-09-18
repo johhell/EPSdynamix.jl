@@ -68,24 +68,6 @@ end
 
 
 
-
-function DeltaSpeed(t::Float64)::Float64
-    kk= -0.01
-    if t>0.1
-        return (t-0.1)*kk
-    end
-    0.0
-end
-
-function Power(t::Float64)::Float64
-#     if t>0.1
-#         return (t-0.1)
-#     end
-    0.5
-end
-
-
-
 PSS2Btest = Model(
     initFktL1 = IniFkt(fktcall=PSS2Binit),
 

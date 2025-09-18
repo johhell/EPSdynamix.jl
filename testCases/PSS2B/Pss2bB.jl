@@ -60,22 +60,6 @@ end
 
 
 
-function DeltaSpeed(t::Float64)::Float64
-    kk= -0.01
-    if t>0.1
-        return (t-0.1)*kk
-    end
-    0.0
-end
-
-function Power(t::Float64)::Float64
-#     if t>0.1
-#         return (t-0.1)
-#     end
-    0.5+0.01*t
-end
-
-
 
 # Tw = 10
 # Inertia = 3091
@@ -101,15 +85,12 @@ PSS2Btest = Model(
     M = 5,
     T8 = 5*0.1, T9 = 0.1,
     Ks1 = 20.0, Ks2 = 1.0163377547719183,   Ks3 = 1.0,
-
     # start
     p0 = 0.5,   w0 = 0.0,
-
     # limiter
     Vstmin = -0.05,     Vstmax = 0.1,   #TODO
 
     out = output,
-
     system = SS,
 
     equations = :[
@@ -142,9 +123,9 @@ instModel = @instantiateModel(PSS2Btest,
 @time simulate!(instModel, interval = 0.01, stopTime=5.0)
 @time simulate!(instModel, interval = 0.01, stopTime=5.0)
 println()
-#
+
 plot(instModel, [("out")], figure = 1)
-# plot(instModel, [("Pm","Pe")], figure = 1)
+
 
 
 end
